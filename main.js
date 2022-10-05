@@ -17,7 +17,7 @@ console.log(consultaCep);
 
 async function buscaEndereco(cep) {
     try {
-        var consultaCep = await fetch(fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        var consultaCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         var consultaCepConvertida = await consultaCep.json();
         if(consultaCepConvertida.erro) {
             throw Error('Cep não existe!')
@@ -29,4 +29,6 @@ async function buscaEndereco(cep) {
     }
 }
 
-buscaEndereco();
+/* Adding an event listener to the input field. */
+var cep = document.getElementById('cep');
+cep.addEventListener("focusout", () => { buscaEndereco(cep.value)});
