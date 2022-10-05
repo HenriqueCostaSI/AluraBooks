@@ -16,6 +16,10 @@ console.log(consultaCep);
 */
 
 async function buscaEndereco(cep) {
+
+    mensagemErro = document.getElementById('erro');
+    mensagemErro.innerHTML = "";
+
     try {
         var consultaCep = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         var consultaCepConvertida = await consultaCep.json();
@@ -27,14 +31,18 @@ async function buscaEndereco(cep) {
         var cidade = document.getElementById('cidade');
         var logradouro = document.getElementById('logradouro');
         var estado = document.getElementById('estado');
+        var bairro = document.getElementById('bairro');
 
         cidade.value =  consultaCepConvertida.localidade;
         logradouro.value = consultaCepConvertida.logradouro;
         estado.value = consultaCepConvertida.estado;
+        bairro.value = consultaCepConvertida.bairro;
 
         console.log(consultaCepConvertida);
     } catch (erro) {
+        mensagemErro.innerHTML = `<p>CEP inválido</p>`;
         console.log(erro)
+       
     }
 }
 
