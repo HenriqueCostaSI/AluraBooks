@@ -29,19 +29,19 @@ async function buscaEndereco(cep) {
 
         /* Getting the values from the API and putting them in the input fields. */
         var cidade = document.getElementById('cidade');
-        var logradouro = document.getElementById('logradouro');
+        var logradouro = document.getElementById('endereco');
         var estado = document.getElementById('estado');
         var bairro = document.getElementById('bairro');
 
-        cidade.value =  consultaCepConvertida.localidade;
+        cidade.value = consultaCepConvertida.localidade;
         logradouro.value = consultaCepConvertida.logradouro;
-        estado.value = consultaCepConvertida.estado;
+        estado.value = consultaCepConvertida.uf;
         bairro.value = consultaCepConvertida.bairro;
 
         console.log(consultaCepConvertida);
     } catch (erro) {
         mensagemErro.innerHTML = `<p>CEP inválido</p>`;
-        console.log(erro)
+        console.log(erro);
        
     }
 }
@@ -49,3 +49,6 @@ async function buscaEndereco(cep) {
 /* Adding an event listener to the input field. */
 var cep = document.getElementById('cep');
 cep.addEventListener("focusout", () => { buscaEndereco(cep.value)});
+
+
+
