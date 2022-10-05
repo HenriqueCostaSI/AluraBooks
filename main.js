@@ -23,6 +23,15 @@ async function buscaEndereco(cep) {
             throw Error('Cep não existe!')
         }
 
+        /* Getting the values from the API and putting them in the input fields. */
+        var cidade = document.getElementById('cidade');
+        var logradouro = document.getElementById('logradouro');
+        var estado = document.getElementById('estado');
+
+        cidade.value =  consultaCepConvertida.localidade;
+        logradouro.value = consultaCepConvertida.logradouro;
+        estado.value = consultaCepConvertida.estado;
+
         console.log(consultaCepConvertida);
     } catch (erro) {
         console.log(erro)
